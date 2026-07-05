@@ -10,4 +10,8 @@ struct cpu {
 	int ip;
 };
 
+void fetch(struct cpu *s);
+void decode(int op);
+void execute(struct cpu *s);
+
 #endif
