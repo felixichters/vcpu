@@ -13,6 +13,9 @@ struct cpu {
 };
 
 struct cpu cpu_create(void);
-void fetch(struct cpu *s);
+
+void fde(struct cpu *c);
+
+uint8_t fetch(struct cpu *c);
 
 #endif
