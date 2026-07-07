@@ -1,17 +1,18 @@
 #ifndef CPU_H
 #define CPU_H
 
+#include <stdint.h>
+
 struct cpu {
-	int ax, bx;
-	int cx, dx;
+	uint8_t ax, bx;
+	uint8_t cx, dx;
 	char fl;
 	char sp;
-	int st[10];
-	int ip;
+	uint8_t st[10];
+	uint8_t ip;
 };
 
+struct cpu cpu_create(void);
 void fetch(struct cpu *s);
-void decode(int op);
-void execute(struct cpu *s);
 
 #endif
