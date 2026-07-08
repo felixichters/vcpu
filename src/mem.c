@@ -20,3 +20,21 @@ void mem_destroy(struct memory *m)
 	m->data = NULL;
 	m->size = 0;
 }
+
+// move into own module
+int mod_wrap(int x, int y)
+{
+	return ((x % y) + y) %y;
+}
+
+uint8_t mem_read(struct memory *m, int addr)
+{
+	addr = mod_wrap(addr, (int)m->size);
+	return m->data[addr];
+}
+
+void mem_write(struct memory *m, int addr, uint8_t val)
+{
+	addr = mod_wrap(addr, (int)m->size);
+	m->data[addr] = val;
+}
