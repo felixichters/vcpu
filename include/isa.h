@@ -6,19 +6,22 @@
 
 enum {
 	NOP,
-	ASL,
+	INA,
+	INX,
+	INY,
+	NUM_OPCODES,
 };
 
-struct opcode {
-	uint8_t op;
-	void (*handle)(struct cpu*);
-};
+extern void (*isa[NUM_OPCODES])(struct cpu*, struct memory*);
 
-extern struct opcode isa[];
+void (*decode(uint8_t op))(struct cpu*, struct memory*);
 
-void decode(uint8_t op);
-void execute(struct cpu *c, struct opcode *instr);
+void execute(struct cpu *c, struct memory *m, 
+             void (*exec)(struct cpu*, struct memory*));
 
-void exec_nop(struct cpu *s);
+void exec_nop(struct cpu *c, struct memory *m);
+void exec_ina(struct cpu *c, struct memory *m);
+void exec_inx(struct cpu *c, struct memory *m);
+void exec_iny(struct cpu *c, struct memory *m);
 
 #endif

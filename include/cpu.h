@@ -2,10 +2,11 @@
 #define CPU_H
 
 #include <stdint.h>
+#include "mem.h"
 
 struct cpu {
-	uint8_t ax, bx;
-	uint8_t cx, dx;
+	uint8_t a;
+	uint8_t x, y;
 	char fl;
 	char sp;
 	uint8_t st[10];
@@ -14,8 +15,8 @@ struct cpu {
 
 struct cpu cpu_create(void);
 
-void fde(struct cpu *c);
+void fde(struct cpu *c, struct memory *m);
 
-uint8_t fetch(struct cpu *c);
+uint8_t fetch(struct cpu *c, struct memory *m);
 
 #endif
