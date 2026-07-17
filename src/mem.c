@@ -1,4 +1,5 @@
 #include "mem.h"
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,12 +20,6 @@ void mem_destroy(struct memory *m)
 	free(m->data);
 	m->data = NULL;
 	m->size = 0;
-}
-
-// move into own module
-int mod_wrap(int x, int y)
-{
-	return ((x % y) + y) %y;
 }
 
 uint8_t mem_read(struct memory *m, int addr)
