@@ -12,6 +12,7 @@
         packages = with pkgs; [
           gcc
           gdb
+          gnumake
         ];
         shellHook = "echo 'done'";
       };
