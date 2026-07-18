@@ -1,4 +1,4 @@
-#include "../include/isa.h"
+#include "isa.h"
 
 
 void (*isa[NUM_OPCODES])(struct cpu *c, struct memory *m) = {

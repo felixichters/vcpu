@@ -1,20 +1,26 @@
-CC     = gcc
-CFLAGS = -Wall -Wextra -Iinclude
+CC      := clang
+CFLAGS  := -std=c23 -Wall -Wextra -I.
+BUILDDIR := build
 
-TARGET = vcpu
-SRC    = $(wildcard src/*.c)
-OBJ    = $(SRC:src/%.c=build/%.o)
+SRCS := $(wildcard *.c)
+OBJS := $(SRCS:%.c=$(BUILDDIR)/%.o)
+DEPS := $(OBJS:.o=.d)
+TARGET := $(BUILDDIR)/vcpu
 
-$(TARGET): $(OBJ)
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-build/%.o: src/%.c | build
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(BUILDDIR)/%.o: %.c | $(BUILDDIR)
+	$(CC) $(CFLAGS) -MMD -MP -c -o $@ $<
 
-build:
-	mkdir -p build
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
+
+-include $(DEPS)
 
 clean:
-	rm -rf build $(TARGET)
-
-.PHONY: clean
+	rm -rf $(BUILDDIR)

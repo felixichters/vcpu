@@ -1,5 +1,3 @@
-compile_flags.txt
-*.out
-vcpu
+build/
 .direnv/
-bin/
+compile_commands.json

@@ -10,11 +10,15 @@
     in {
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
-          gcc
-          gdb
+          clang
+          lldb
           gnumake
+          bear
         ];
-        shellHook = "echo 'done'";
+        shellHook = ''
+          export CC=clang
+          echo 'done'
+        '';
       };
     };
 }
