@@ -1,5 +1,5 @@
 CC      := clang
-CFLAGS  := -std=c23 -Wall -Wextra -I.
+CFLAGS  := -std=c23 -Wall -Wextra -I. -g -O0
 BUILDDIR := build
 
 SRCS := $(wildcard *.c)
